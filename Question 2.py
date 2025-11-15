@@ -246,7 +246,7 @@ class SocialMediaApp:
             return -1
 
 
-# 4. Menu-Driven Program
+# Menu-Driven Program
 def main():
     """Main menu-driven program for the social media app"""
     app = SocialMediaApp()

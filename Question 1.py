@@ -2,7 +2,7 @@ import time
 import random
 
 
-# --- 1. Product Entity Class ---
+#1. Product Entity Class
 class Product:
     """
     Represents a single product in the Baby Shop inventory.
@@ -13,7 +13,7 @@ class Product:
         # We use a unique integer ID as the key for hashing.
         self.product_id = product_id
         self.name = name
-        self.category = category  # e.g., 'Diapers', 'Strollers', 'Toys'
+        self.category = category
         self.price = price
         self.quantity = quantity
 
@@ -27,7 +27,7 @@ class Product:
         return (self.product_id, self)
 
 
-# --- 2. Chaining Hash Table Implementation (Separate Chaining) ---
+#2. Chaining Hash Table Implementation (Separate Chaining)
 class ChainingHashTable:
     """
     Implements a Hash Table using Separate Chaining for collision resolution.
@@ -129,7 +129,7 @@ def generate_sample_data(hash_table, array_list):
         (10, "Teething Toy Set", "Toys", 12.50, 110),
     ]
 
-    next_id = 10001  # Start ID for user input to avoid collisions with sample data
+    next_id = 10001  #Start ID for user input to avoid collisions with sample data
 
     print("--- Initializing Inventory ---")
     for prod_id, name, category, price, quantity in products_data:
@@ -204,7 +204,7 @@ def inventory_menu(hash_table, next_id):
             break
 
 
-# --- 4. Performance Comparison ---
+#4. Performance Comparison
 
 def search_array(key, array):
     """
@@ -235,7 +235,7 @@ def run_performance_comparison(hash_table, array_data):
     num_searches = len(search_keys)
     num_runs = 1000  # Number of times to repeat the search loop for timing
 
-    # --- Hash Table Timing ---
+    # Hash Table Timing
     start_time_hash = time.perf_counter()
     for _ in range(num_runs):
         for key in search_keys:
@@ -245,7 +245,7 @@ def run_performance_comparison(hash_table, array_data):
     hash_time = (end_time_hash - start_time_hash) * 1e6  # Convert to microseconds
     avg_hash_time = hash_time / (num_searches * num_runs)
 
-    # --- Array Timing ---
+    # Array Timing
     start_time_array = time.perf_counter()
     for _ in range(num_runs):
         for key in search_keys:
@@ -255,7 +255,7 @@ def run_performance_comparison(hash_table, array_data):
     array_time = (end_time_array - start_time_array) * 1e6  # Convert to microseconds
     avg_array_time = array_time / (num_searches * num_runs)
 
-    # --- Results ---
+    # Results
     print(f"\nTotal items searched: {num_searches}")
     print(f"Total loop repetitions: {num_runs}\n")
 
@@ -272,16 +272,6 @@ def run_performance_comparison(hash_table, array_data):
     print(f"| {'Hash Table (Chaining)':<20} | {avg_hash_time * 1000:<20.4f} |")
     print(f"| {'Array (Linear Search)':<20} | {avg_array_time * 1000:<20.4f} |")
     print("-" * 50)
-
-    # Conclusion for the Report
-    if avg_hash_time < avg_array_time:
-        print("\nAnalysis: The Hash Table (Chaining) demonstrated superior search performance.")
-        print("This is expected as Hash Table search approaches O(1) complexity (average case),")
-        print("while Array search is O(N) (worst/average case).")
-    else:
-        print("\nAnalysis: The Array demonstrated superior search performance.")
-        print("This suggests the dataset is too small, and the overhead of hashing/collision")
-        print("resolution is greater than the O(N) linear search on the small list.")
 
 
 #Main Execution Block
