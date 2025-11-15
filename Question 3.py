@@ -1,6 +1,5 @@
 import time
 import threading
-import math
 
 # 2. Factorial Function and Big-O Analysis
 def calculate_factorial(n: int) -> int:
